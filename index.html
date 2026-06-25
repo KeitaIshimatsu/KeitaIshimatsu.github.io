@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keita Ishimatsu — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --bg: #ffffff;
+      --surface: #f7f7f5;
+      --border: #e8e8e8;
+      --text: #1a1a1a;
+      --muted: #9a9a9a;
+      --accent: #1a1a1a;
+      --accent-dim: rgba(26, 26, 26, 0.05);
+      --font-body: 'Inter', 'Noto Sans JP', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: #1a1a1a;
+      letter-spacing: 0.04em;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .lang-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      transition: background 0.15s, color 0.15s;
+      letter-spacing: 0.05em;
+    }
+    .lang-btn.active {
+      background: #1a1a1a;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 56px;
+    }
+    .hero-inner {
+      padding: 80px 0 60px;
+    }
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.1s;
+    }
+    .hero-name {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+    .hero-name span { color: var(--muted); }
+    .hero-intro {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.35s;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.45s;
+    }
+    .hero-meta .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ── Section base ── */
+    section { padding: 80px 0; border-top: 1px solid var(--border); }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-tag {
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: var(--font-mono);
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-tag:hover {
+      border-color: #1a1a1a;
+      color: #1a1a1a;
+    }
+
+    /* ── Experience ── */
+    .exp-list { display: flex; flex-direction: column; gap: 28px; }
+    .exp-item {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      transition: border-color 0.2s;
+    }
+    .exp-item:hover { border-color: #1a1a1a; }
+    .exp-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .exp-company {
+      font-size: 13px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+
+    /* ── Interests ── */
+    .interests-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .interest-item {
+      padding: 6px 14px;
+      background: var(--accent-dim);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* ── Goals ── */
+    .goals-list { display: flex; flex-direction: column; gap: 12px; }
+    .goal-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .goal-item::before {
+      content: '→';
+      color: var(--muted);
+      font-family: var(--font-mono);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── Contact ── */
+    #contact p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .contact-link {
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: var(--font-mono);
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover {
+      border-color: #1a1a1a;
+      color: #1a1a1a;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── Japanese font ── */
+    :lang(ja) { font-family: 'Noto Sans JP', sans-serif; font-weight: 300; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">keita.dev</span>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#about" data-en="About" data-ja="について">About</a></li>
+          <li><a href="#skills" data-en="Skills" data-ja="スキル">Skills</a></li>
+          <li><a href="#experience" data-en="Experience" data-ja="経験">Experience</a></li>
+          <li><a href="#contact" data-en="Contact" data-ja="連絡">Contact</a></li>
+        </ul>
+        <div class="lang-toggle">
+          <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" id="btn-ja" onclick="setLang('ja')">JP</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <p class="hero-label" data-en="Software Engineer" data-ja="ソフトウェアエンジニア">Software Engineer</p>
+        <h1 class="hero-name">Keita<br><span>Ishimatsu</span></h1>
+        <p class="hero-intro"
+          data-en="Hello, I'm Keita, a software engineer based in Fukuoka, Japan. I specialize in embedded software development and camera-related systems. Currently expanding my skills in web development, AI, and English communication with the goal of working internationally."
+          data-ja="福岡在住のソフトウェアエンジニア、石松慶太です。組み込みソフトウェアとカメラシステムを専門とし、現在はWeb開発・AI・英語コミュニケーションを学びながら、国際的なキャリアを目指しています。">
+          Hello, I'm Keita, a software engineer based in Fukuoka, Japan. I specialize in embedded software development and camera-related systems. Currently expanding my skills in web development, AI, and English communication with the goal of working internationally.
+        </p>
+        <div class="hero-meta">
+          <span class="dot"></span>
+          <span data-en="Fukuoka, Japan" data-ja="日本・福岡">Fukuoka, Japan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Goals -->
+  <section id="about">
+    <div class="container reveal">
+      <p class="section-label" data-en="Goals" data-ja="目標">Goals</p>
+      <div class="goals-list">
+        <div class="goal-item" data-en="Work internationally" data-ja="国際的な環境で働く">Work internationally</div>
+        <div class="goal-item" data-en="Become a freelancer" data-ja="フリーランサーとして独立する">Become a freelancer</div>
+        <div class="goal-item" data-en="Develop AI-related products" data-ja="AIプロダクトを開発する">Develop AI-related products</div>
+        <div class="goal-item" data-en="Working Holiday in Canada" data-ja="カナダへワーキングホリデー">Working Holiday in Canada</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container reveal">
+      <p class="section-label" data-en="Skills" data-ja="スキル">Skills</p>
+      <div class="skills-grid">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Git / GitHub</span>
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Embedded Systems</span>
+        <span class="skill-tag">Camera Software</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="container reveal">
+      <p class="section-label" data-en="Experience" data-ja="経歴">Experience</p>
+      <div class="exp-list">
+        <div class="exp-item">
+          <p class="exp-title" data-en="Software Engineer" data-ja="ソフトウェアエンジニア">Software Engineer</p>
+          <p class="exp-company">Hujisoft</p>
+        </div>
+        <div class="exp-item">
+          <p class="exp-title" data-en="Environmental Hygiene Specialist" data-ja="環境衛生の専門家">Environmental Hygiene Specialist</p>
+          <p class="exp-company">Ikari Shodoku Co., Ltd.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interests -->
+  <section id="interests">
+    <div class="container reveal">
+      <p class="section-label" data-en="Interests" data-ja="興味">Interests</p>
+      <div class="interests-grid">
+        <span class="interest-item" data-en="AI" data-ja="AI">AI</span>
+        <span class="interest-item" data-en="Web Development" data-ja="Web開発">Web Development</span>
+        <span class="interest-item" data-en="Video Editing" data-ja="動画編集">Video Editing</span>
+        <span class="interest-item" data-en="English Learning" data-ja="英語学習">English Learning</span>
+        <span class="interest-item" data-en="Working Holiday" data-ja="ワーキングホリデー">Working Holiday</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container reveal">
+      <p class="section-label" data-en="Contact" data-ja="連絡">Contact</p>
+      <p data-en="Feel free to reach out — always open to new opportunities." data-ja="お気軽にご連絡ください。新しい機会を常に歓迎しています。">
+        Feel free to reach out — always open to new opportunities.
+      </p>
+      <div class="contact-links">
+        <a class="contact-link" href="https://github.com/KeitaIshimatsu" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <span>© 2025 Keita Ishimatsu</span>
+    </div>
+  </footer>
+
+  <script>
+    // ── Language toggle ──
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.dataset[lang] || el.dataset.en;
+      });
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+    }
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
