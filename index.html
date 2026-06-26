@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    /* ── Tokens ── */
     :root {
       --bg: #ffffff;
       --surface: #f7f7f5;
@@ -20,8 +19,6 @@
       --font-body: 'Inter', 'Noto Sans JP', sans-serif;
       --font-mono: 'DM Mono', monospace;
     }
-
-    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -35,252 +32,156 @@
     }
     a { color: inherit; text-decoration: none; }
 
-    /* ── Layout ── */
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
 
-    /* ── Nav ── */
+    /* Nav */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       border-bottom: 1px solid var(--border);
       background: rgba(255,255,255,0.88);
       backdrop-filter: blur(12px);
     }
     .nav-inner {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      max-width: 720px; margin: 0 auto; padding: 0 24px;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-logo {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: #1a1a1a;
-      letter-spacing: 0.04em;
-    }
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 13px;
-      color: var(--muted);
-      transition: color 0.2s;
-      letter-spacing: 0.02em;
-    }
+    .nav-logo { font-family: var(--font-mono); font-size: 13px; color: #1a1a1a; letter-spacing: 0.04em; }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; letter-spacing: 0.02em; }
     .nav-links a:hover { color: var(--text); }
 
-    /* Language toggle */
     .lang-toggle {
-      display: flex;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
+      display: flex; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
     }
     .lang-btn {
-      padding: 5px 12px;
-      font-size: 12px;
-      font-family: var(--font-mono);
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      transition: background 0.15s, color 0.15s;
-      letter-spacing: 0.05em;
+      padding: 5px 12px; font-size: 12px; font-family: var(--font-mono);
+      cursor: pointer; border: none; background: transparent;
+      color: var(--muted); transition: background 0.15s, color 0.15s; letter-spacing: 0.05em;
     }
-    .lang-btn.active {
-      background: #1a1a1a;
-      color: #ffffff;
-      font-weight: 500;
-    }
+    .lang-btn.active { background: #1a1a1a; color: #ffffff; font-weight: 500; }
 
-    /* ── Hero ── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding-top: 56px;
-    }
-    .hero-inner {
-      padding: 80px 0 60px;
-    }
+    /* Hero */
+    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 56px; }
+    .hero-inner { padding: 80px 0 60px; }
     .hero-label {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.1s;
+      font-family: var(--font-mono); font-size: 12px; color: var(--muted);
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 24px;
+      opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s;
     }
     .hero-name {
-      font-size: clamp(36px, 6vw, 56px);
-      font-weight: 500;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.2s;
+      font-size: clamp(36px, 6vw, 56px); font-weight: 500;
+      line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.6s ease forwards 0.2s;
     }
     .hero-name span { color: var(--muted); }
     .hero-intro {
-      font-size: 15px;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.8;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.35s;
+      font-size: 15px; color: var(--muted); max-width: 520px;
+      line-height: 1.8; margin-bottom: 40px;
+      opacity: 0; animation: fadeUp 0.6s ease forwards 0.35s;
     }
     .hero-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.45s;
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 12px; color: var(--muted);
+      opacity: 0; animation: fadeUp 0.6s ease forwards 0.45s;
     }
     .hero-meta .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #1a1a1a;
-      animation: pulse 2s ease-in-out infinite;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #1a1a1a; animation: pulse 2s ease-in-out infinite;
     }
 
-    /* ── Section base ── */
+    /* Section */
     section { padding: 80px 0; border-top: 1px solid var(--border); }
     .section-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 32px;
+      font-family: var(--font-mono); font-size: 11px; color: #1a1a1a;
+      letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px;
     }
 
-    /* ── Skills ── */
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    /* Skills */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
     .skill-tag {
-      padding: 6px 14px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 13px;
-      font-family: var(--font-mono);
-      color: var(--muted);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .skill-tag:hover {
-      border-color: #1a1a1a;
-      color: #1a1a1a;
+      display: inline-block;
+      padding: 3px 10px; border: 1px solid var(--border); border-radius: 3px;
+      font-size: 11px; font-family: var(--font-mono); color: var(--muted);
     }
 
-    /* ── Experience ── */
-    .exp-list { display: flex; flex-direction: column; gap: 28px; }
+    /* Experience */
+    .exp-list { display: flex; flex-direction: column; gap: 24px; }
     .exp-item {
-      padding: 20px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--surface);
-      transition: border-color 0.2s;
+      padding: 24px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--surface); transition: border-color 0.2s;
     }
     .exp-item:hover { border-color: #1a1a1a; }
-    .exp-title {
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 4px;
-    }
-    .exp-company {
-      font-size: 13px;
-      color: var(--muted);
-      font-family: var(--font-mono);
-    }
-
-    /* ── Interests ── */
-    .interests-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .interest-item {
-      padding: 6px 14px;
-      background: var(--accent-dim);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 13px;
-      color: var(--text);
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; flex-wrap: wrap; gap: 8px; }
+    .exp-title { font-size: 14px; font-weight: 500; }
+    .exp-period { font-size: 12px; color: var(--muted); font-family: var(--font-mono); }
+    .exp-company { font-size: 13px; color: #555; font-family: var(--font-mono); margin-bottom: 12px; }
+    .exp-desc { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 12px; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .exp-tag {
+      padding: 3px 10px; border: 1px solid var(--border); border-radius: 3px;
+      font-size: 11px; font-family: var(--font-mono); color: var(--muted);
     }
 
-    /* ── Goals ── */
-    .goals-list { display: flex; flex-direction: column; gap: 12px; }
-    .goal-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 14px;
-      color: var(--muted);
+    /* Projects */
+    .proj-list { display: flex; flex-direction: column; gap: 16px; }
+    .proj-item {
+      padding: 20px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--surface); transition: border-color 0.2s;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
     }
-    .goal-item::before {
-      content: '→';
-      color: var(--muted);
-      font-family: var(--font-mono);
-      flex-shrink: 0;
-      margin-top: 2px;
+    .proj-item:hover { border-color: #1a1a1a; }
+    .proj-info { flex: 1; }
+    .proj-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+    .proj-desc { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 10px; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .proj-tag {
+      padding: 3px 10px; border: 1px solid var(--border); border-radius: 3px;
+      font-size: 11px; font-family: var(--font-mono); color: var(--muted);
     }
+    .proj-link {
+      font-size: 12px; font-family: var(--font-mono); color: var(--muted);
+      border: 1px solid var(--border); padding: 6px 12px; border-radius: 4px;
+      white-space: nowrap; transition: border-color 0.2s, color 0.2s; flex-shrink: 0;
+    }
+    .proj-link:hover { border-color: #1a1a1a; color: #1a1a1a; }
 
-    /* ── Contact ── */
-    #contact p {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 20px;
+    /* Contact email */
+    .contact-email {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; border: 1px solid var(--border);
+      border-radius: 6px; background: var(--surface);
     }
+    .email-address {
+      font-size: 13px; font-family: var(--font-mono); color: #555;
+    }
+    .copy-btn {
+      padding: 4px 12px; font-size: 11px; font-family: var(--font-mono);
+      border: 1px solid var(--border); border-radius: 4px;
+      background: transparent; color: var(--muted);
+      cursor: pointer; transition: border-color 0.2s, color 0.2s; white-space: nowrap;
+    }
+    .copy-btn:hover { border-color: #1a1a1a; color: #1a1a1a; }
+    .copy-btn.copied { border-color: #1a1a1a; color: #1a1a1a; }
+
+    /* Contact */
+    #contact p { font-size: 14px; color: #555; margin-bottom: 20px; }
     .contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
     .contact-link {
-      padding: 10px 20px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 13px;
-      font-family: var(--font-mono);
-      color: var(--muted);
-      transition: border-color 0.2s, color 0.2s;
+      padding: 10px 20px; border: 1px solid var(--border); border-radius: 6px;
+      font-size: 13px; font-family: var(--font-mono); color: #555;
+      transition: border-color 0.2s;
     }
-    .contact-link:hover {
-      border-color: #1a1a1a;
-      color: #1a1a1a;
-    }
+    .contact-link:hover { border-color: #1a1a1a; }
 
-    /* ── Footer ── */
+    /* Footer */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      font-family: var(--font-mono);
+      border-top: 1px solid var(--border); padding: 32px 0;
+      text-align: center; font-size: 12px; color: var(--muted); font-family: var(--font-mono);
     }
 
-    /* ── Animations ── */
+    /* Animations */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -289,23 +190,16 @@
       0%, 100% { opacity: 1; }
       50%       { opacity: 0.3; }
     }
-
     .reveal {
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 0; transform: translateY(20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── Responsive ── */
     @media (max-width: 600px) {
       .nav-links { display: none; }
+      .proj-item { flex-direction: column; }
     }
-
-    /* ── Japanese font ── */
     :lang(ja) { font-family: 'Noto Sans JP', sans-serif; font-weight: 300; }
   </style>
 </head>
@@ -317,9 +211,9 @@
       <span class="nav-logo">keita.dev</span>
       <div class="nav-right">
         <ul class="nav-links">
-          <li><a href="#about" data-en="About" data-ja="について">About</a></li>
           <li><a href="#skills" data-en="Skills" data-ja="スキル">Skills</a></li>
-          <li><a href="#experience" data-en="Experience" data-ja="経験">Experience</a></li>
+          <li><a href="#experience" data-en="Experience" data-ja="経歴">Experience</a></li>
+          <li><a href="#projects" data-en="Projects" data-ja="制作物">Projects</a></li>
           <li><a href="#contact" data-en="Contact" data-ja="連絡">Contact</a></li>
         </ul>
         <div class="lang-toggle">
@@ -337,9 +231,9 @@
         <p class="hero-label" data-en="Software Engineer" data-ja="ソフトウェアエンジニア">Software Engineer</p>
         <h1 class="hero-name">Keita<br><span>Ishimatsu</span></h1>
         <p class="hero-intro"
-          data-en="Hello, I'm Keita, a software engineer based in Fukuoka, Japan. I specialize in embedded software development and camera-related systems. Currently expanding my skills in web development, AI, and English communication with the goal of working internationally."
-          data-ja="福岡在住のソフトウェアエンジニア、石松慶太です。組み込みソフトウェアとカメラシステムを専門とし、現在はWeb開発・AI・英語コミュニケーションを学びながら、国際的なキャリアを目指しています。">
-          Hello, I'm Keita, a software engineer based in Fukuoka, Japan. I specialize in embedded software development and camera-related systems. Currently expanding my skills in web development, AI, and English communication with the goal of working internationally.
+          data-en="Software engineer with 2.5+ years of experience in network camera systems — spanning requirements definition, UI specification, integration testing, and team leadership. Currently expanding into web development and AI to pursue an international career."
+          data-ja="ネットワークカメラ業界でのシステム開発に約2年6ヶ月従事。要件定義・UI仕様策定・結合テスト・チームリーダーとして幅広く経験。現在はWeb開発・AIへスキルを拡張し、国際的なキャリアを目指しています。">
+          Software engineer with 2.5+ years of experience in network camera systems — spanning requirements definition, UI specification, integration testing, and team leadership. Currently expanding into web development and AI to pursue an international career.
         </p>
         <div class="hero-meta">
           <span class="dot"></span>
@@ -349,30 +243,22 @@
     </div>
   </section>
 
-  <!-- About / Goals -->
-  <section id="about">
-    <div class="container reveal">
-      <p class="section-label" data-en="Goals" data-ja="目標">Goals</p>
-      <div class="goals-list">
-        <div class="goal-item" data-en="Work internationally" data-ja="国際的な環境で働く">Work internationally</div>
-        <div class="goal-item" data-en="Become a freelancer" data-ja="フリーランサーとして独立する">Become a freelancer</div>
-        <div class="goal-item" data-en="Develop AI-related products" data-ja="AIプロダクトを開発する">Develop AI-related products</div>
-        <div class="goal-item" data-en="Working Holiday in Canada" data-ja="カナダへワーキングホリデー">Working Holiday in Canada</div>
-      </div>
-    </div>
-  </section>
-
   <!-- Skills -->
   <section id="skills">
     <div class="container reveal">
       <p class="section-label" data-en="Skills" data-ja="スキル">Skills</p>
       <div class="skills-grid">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">Git / GitHub</span>
-        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">Java</span>
         <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">Embedded Systems</span>
-        <span class="skill-tag">Camera Software</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">SQL Server</span>
+        <span class="skill-tag">Git / GitHub</span>
+        <span class="skill-tag">Windows</span>
+        <span class="skill-tag" data-en="Requirements Definition" data-ja="要件定義">Requirements Definition</span>
+        <span class="skill-tag" data-en="UI Specification" data-ja="UI仕様策定">UI Specification</span>
+        <span class="skill-tag" data-en="Integration Testing" data-ja="結合テスト">Integration Testing</span>
+        <span class="skill-tag" data-en="Team Leadership" data-ja="チームリーダー">Team Leadership</span>
       </div>
     </div>
   </section>
@@ -380,30 +266,108 @@
   <!-- Experience -->
   <section id="experience">
     <div class="container reveal">
-      <p class="section-label" data-en="Experience" data-ja="経歴">Experience</p>
+      <p class="section-label" data-en="Experience" data-ja="職務経歴">Experience</p>
       <div class="exp-list">
+
         <div class="exp-item">
-          <p class="exp-title" data-en="Software Engineer" data-ja="ソフトウェアエンジニア">Software Engineer</p>
-          <p class="exp-company">Hujisoft</p>
+          <div class="exp-header">
+            <p class="exp-title" data-en="Software Engineer / Sub-Project Leader Assistant" data-ja="ソフトウェアエンジニア / SPL補佐">Software Engineer / Sub-Project Leader Assistant</p>
+            <span class="exp-period">2023.10 — 2026.05</span>
+          </div>
+          <p class="exp-company">Fujisoft Inc.</p>
+          <p class="exp-desc"
+            data-en="Assigned to a major network camera manufacturer, contributing across the full development cycle — from requirements gathering and UI specification writing to integration testing and quality control. As team leader for a 3-person sub-team, I introduced task visualization (WBS) and process documentation, achieving zero delivery delays and reducing onboarding costs for new members."
+            data-ja="ネットワークカメラ大手メーカーへの常駐として、要件定義・UI仕様書作成から結合テスト・品質管理まで上流〜下流を横断して担当。3名のチームリーダーとしてWBSによるタスク可視化と業務マニュアル化を推進し、納期遅延ゼロ・新規参画者の教育コスト削減を達成。">
+            Assigned to a major network camera manufacturer, contributing across the full development cycle — from requirements gathering and UI specification writing to integration testing and quality control. As team leader for a 3-person sub-team, I introduced task visualization (WBS) and process documentation, achieving zero delivery delays and reducing onboarding costs for new members.
+          </p>
+          <div class="exp-tags">
+            <span class="exp-tag">SQL Server</span>
+            <span class="exp-tag">Windows</span>
+            <span class="exp-tag" data-en="Network Camera" data-ja="ネットワークカメラ">Network Camera</span>
+            <span class="exp-tag" data-en="UI Specification" data-ja="UI仕様">UI Specification</span>
+            <span class="exp-tag" data-en="Quality Control" data-ja="品質管理">Quality Control</span>
+          </div>
         </div>
+
         <div class="exp-item">
-          <p class="exp-title" data-en="Environmental Hygiene Specialist" data-ja="環境衛生の専門家">Environmental Hygiene Specialist</p>
+          <div class="exp-header">
+            <p class="exp-title" data-en="Technical Sales / Environmental Hygiene Specialist" data-ja="技術営業 / 環境衛生管理">Technical Sales / Environmental Hygiene Specialist</p>
+            <span class="exp-period">2021.04 — 2023.02</span>
+          </div>
           <p class="exp-company">Ikari Shodoku Co., Ltd.</p>
+          <p class="exp-desc"
+            data-en="Handled end-to-end hygiene management services for food factories, restaurants, and medical facilities — from on-site surveys and pest control proposals to HACCP compliance support. Achieved 113% YoY sales growth through consistent customer follow-up and tailored sanitation planning."
+            data-ja="食品工場・飲食店・医療施設向けに現地調査から防除計画・施工・HACCP対応支援まで一貫して担当。継続的なフォローと提案力により前年比113%の売上増を達成。">
+            Handled end-to-end hygiene management services for food factories, restaurants, and medical facilities — from on-site surveys and pest control proposals to HACCP compliance support. Achieved 113% YoY sales growth through consistent customer follow-up and tailored sanitation planning.
+          </p>
+          <div class="exp-tags">
+            <span class="exp-tag">HACCP</span>
+            <span class="exp-tag" data-en="Technical Sales" data-ja="技術営業">Technical Sales</span>
+            <span class="exp-tag" data-en="Customer Relations" data-ja="顧客対応">Customer Relations</span>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Interests -->
-  <section id="interests">
+  <!-- Projects -->
+  <section id="projects">
     <div class="container reveal">
-      <p class="section-label" data-en="Interests" data-ja="興味">Interests</p>
-      <div class="interests-grid">
-        <span class="interest-item" data-en="AI" data-ja="AI">AI</span>
-        <span class="interest-item" data-en="Web Development" data-ja="Web開発">Web Development</span>
-        <span class="interest-item" data-en="Video Editing" data-ja="動画編集">Video Editing</span>
-        <span class="interest-item" data-en="English Learning" data-ja="英語学習">English Learning</span>
-        <span class="interest-item" data-en="Working Holiday" data-ja="ワーキングホリデー">Working Holiday</span>
+      <p class="section-label" data-en="Projects" data-ja="制作物">Projects</p>
+      <div class="proj-list">
+
+        <div class="proj-item">
+          <div class="proj-info">
+            <p class="proj-title">Note — Blog</p>
+            <p class="proj-desc"
+              data-en="Personal blog documenting my journey — English learning, working holiday preparation, web development, and everyday thoughts. Writing consistently to improve communication skills and share experiences."
+              data-ja="英語学習・ワーホリ準備・Web開発など、日々の学びや考えを発信するブログ。継続的なアウトプットを通じてコミュニケーション力を磨いています。">
+              Personal blog documenting my journey — English learning, working holiday preparation, web development, and everyday thoughts. Writing consistently to improve communication skills and share experiences.
+            </p>
+            <div class="proj-tags">
+              <span class="proj-tag" data-en="Writing" data-ja="ライティング">Writing</span>
+              <span class="proj-tag" data-en="English Learning" data-ja="英語学習">English Learning</span>
+              <span class="proj-tag" data-en="Working Holiday" data-ja="ワーキングホリデー">Working Holiday</span>
+            </div>
+          </div>
+          <a class="proj-link" href="https://note.com/moioimo" target="_blank">note →</a>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-info">
+            <p class="proj-title">Cebu Conquest — Socket Server</p>
+            <p class="proj-desc"
+              data-en="Contributed the real-time socket server for a collaborative web application built by a study abroad cohort. Responsible for WebSocket event handling and server-side communication logic."
+              data-ja="留学中の仲間と共同開発したWebアプリのリアルタイムソケットサーバーを担当。WebSocketのイベント処理とサーバーサイド通信ロジックを実装。">
+              Contributed the real-time socket server for a collaborative web application built by a study abroad cohort. Responsible for WebSocket event handling and server-side communication logic.
+            </p>
+            <div class="proj-tags">
+              <span class="proj-tag">JavaScript</span>
+              <span class="proj-tag">Socket.io</span>
+              <span class="proj-tag">Node.js</span>
+            </div>
+          </div>
+          <a class="proj-link" href="https://github.com/kredo-school/cebu-conquest-batch21-am" target="_blank">GitHub →</a>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-info">
+            <p class="proj-title" data-en="Portfolio Site" data-ja="ポートフォリオサイト">Portfolio Site</p>
+            <p class="proj-desc"
+              data-en="This site. Built with vanilla HTML, CSS, and JavaScript. Features bilingual support (EN/JP), scroll animations, and a minimal responsive design."
+              data-ja="このサイト。HTML・CSS・Vanilla JSで構築。日英切り替え・スクロールアニメーション・レスポンシブ対応のミニマルデザイン。">
+              This site. Built with vanilla HTML, CSS, and JavaScript. Features bilingual support (EN/JP), scroll animations, and a minimal responsive design.
+            </p>
+            <div class="proj-tags">
+              <span class="proj-tag">HTML</span>
+              <span class="proj-tag">CSS</span>
+              <span class="proj-tag">JavaScript</span>
+            </div>
+          </div>
+          <a class="proj-link" href="https://github.com/KeitaIshimatsu/Keitalshimatsu.github.io" target="_blank">GitHub →</a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -417,6 +381,12 @@
       </p>
       <div class="contact-links">
         <a class="contact-link" href="https://github.com/KeitaIshimatsu" target="_blank">GitHub</a>
+        <a class="contact-link" href="https://www.instagram.com/ishiga5656?igsh=cHdubDg0cHkzamNt&utm_source=qr" target="_blank">Instagram</a>
+        <a class="contact-link" href="https://www.facebook.com/share/197bNwZ41N/?mibextid=wwXIfr" target="_blank">Facebook</a>
+        <div class="contact-email">
+          <span class="email-address">k.ishimatsu.sapphire@gmail.com</span>
+          <button class="copy-btn" onclick="copyEmail(this)">Copy</button>
+        </div>
       </div>
     </div>
   </section>
@@ -424,12 +394,18 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <span>© 2025 Keita Ishimatsu</span>
+      <span>© 2026 Keita Ishimatsu</span>
     </div>
   </footer>
 
   <script>
-    // ── Language toggle ──
+    function copyEmail(btn) {
+      navigator.clipboard.writeText('k.ishimatsu.sapphire@gmail.com');
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    }
+
     function setLang(lang) {
       document.documentElement.lang = lang;
       document.querySelectorAll('[data-en]').forEach(el => {
@@ -439,16 +415,11 @@
       document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
     }
 
-    // ── Scroll reveal ──
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
     }, { threshold: 0.12 });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
